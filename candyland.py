@@ -1,5 +1,6 @@
 from board import Board
 from deck import Deck
+from player import Player
 
 num_players = 4
 
@@ -8,6 +9,11 @@ b = Board()
 
 # Create a shuffled deck
 d = Deck()
+
+# Create players
+p = []
+for i in range(num_players):
+    p.append(Player(i))
 
 # Print Spaces (debug)
 for i in range(b.num_spaces):
@@ -20,3 +26,7 @@ for i in range(b.num_spaces):
 
 # Print Cards (debug)
 d.print()
+
+# Print Players (debug)
+for i in range(num_players):
+    p[i].print()
