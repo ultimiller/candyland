@@ -24,13 +24,14 @@ class Deck:
         NUM_SINGLE_YELLOW = 4
         NUM_DOUBLE_YELLOW = 2
         self.cards = []
+        self.current_card_idx = 0
         
         # Build the deck
         for i in range(NUM_SINGLE_YELLOW):
             self.cards.append(Card('yellow'))
         for i in range(NUM_DOUBLE_YELLOW):
             self.cards.append(Card('yellow', 2))
-        
+
         #Shuffle the deck
         random.shuffle(self.cards)
 
