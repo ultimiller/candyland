@@ -4,6 +4,9 @@ class Player:
     def __init__(self, player_num):
         # Store the player number
         self.player_num = player_num
+
+        # Current space on board
+        self.board_idx = 0;
         
         # Assign unique color based on player_num input
         color_opts = ['blue', 'red', 'yellow', 'green']
