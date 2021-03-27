@@ -29,3 +29,6 @@ class Player:
         self.skip_turn = False
         
         return __skip_turn
+
+    def move(self, new_board_idx):
+        self.board_idx = new_board_idx
