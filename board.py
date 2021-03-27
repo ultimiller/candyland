@@ -8,10 +8,6 @@ class Board:
         # Number of spaces before the end (Candy Castle)
         self.num_spaces = len(self.colors)
 
-        # Add one of each color to the end of the board to allow the last
-        # move to complete before the end of the game
-        self.colors.append(['blue', 'red', 'yellow', 'green'])
-
         # Set an array for handling lose-a-turn spots
         self.lose_turns = [False for i in range(self.num_spaces)]
         #self.lose_turns[35] = True
@@ -24,9 +20,40 @@ class Board:
         #self.shortcuts[3] = 50
         #self.shortcuts[20] = 30
 
-    def next_space(self, current_space, card_color):
-        @todo - find index of next card_color (or wrap if special space)
-              - handle lose a turn, and shortcuts
-              - return new space at end of turn
-        return 
+    def next_space(self, p, c):
+        # Move the player's board_idx based on the card.
+        # Return True if this results in the player winning, False otherwise.
+
+        # Use the list index method to find the next board space, relative to current_space.
+        # If the space doesn't exist, the player either wins or is going backward due to a
+        # special card. Python will throw a ValueError exception in this case.
+        # Put this in a for loop to handle a card with a double color.
+        current_space = p.board_idx
+        c.print
+        for i in range(c.num_squares):
+            try:
+                next_space = self.colors.index(c.color, current_space+1)
+            except ValueError:
+                if (c.special):
+                    # Special cards only have 1 matching board index, so search from the
+                    # start of the board
+                    next_space = self.colors.index(c.color)
+                else:
+                    # This is just a color card, which means the current player wins!
+                    # Set next_space to the Candy Castle space
+                    next_space = self.num_spaces
+                    
+	    # Update the local current_space variable in case this is the
+	    # first color on a double color card.
+            current_space = next_space
+
+        # Handle the lose a turn space
+        #@todo - handle lose a turn, and shortcuts
+        #      - return new space at end of turn
+
+        if (next_space == self.num_spaces):
+            return True
+        else:
+            p.move(next_space)
+            return False
              

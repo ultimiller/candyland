@@ -33,16 +33,25 @@ if (False):
 
 
 # Take turns, play game
-game_over = False
-while (not game_over):
+# Set up an infinite loop that breaks when a player wins.
+while (True):
     print("Player " + str(current_player) + "'s turn")
+
+    # Check to see if this player's turn is getting skipped
+    if (p[current_player].skip_turn):
+        p[current_player].skip_turn == False
+        continue
+    
     card = d.draw()
     card.print()
-    current_space = p[current_player].board_idx
-    next_space = b.next_space(current_space, card.color)
-    print("Moving from " + str(current_space) + " to " + str(next_space))
-    p[current_player].move(next_space)
-    if (p[current_player].current_space >= b.num_spaces):
-        game_over = True
-    else:
-        current_player = (current_player + 1) % num_players
+    
+    # The board next_space function will update the player board_idx,
+    # and return True if this player wins on this move.
+    if (b.next_space(p[current_player], card)):
+        break
+
+    print("Moving to board space " + str(p[current_player].board_idx))
+    # Next players turn
+    current_player = (current_player + 1) % num_players
+
+print("Player " + str(current_player) + " WINS!")

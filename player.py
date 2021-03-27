@@ -6,19 +6,15 @@ class Player:
         self.player_num = player_num
 
         # Current space on board
-        self.board_idx = 0;
+        self.board_idx = -1;
         
-        # Assign unique color based on player_num input
-        color_opts = ['blue', 'red', 'yellow', 'green']
-        self.color = color_opts[player_num]
-
         # Member to know whether player is missing the next
         # turn
         self.skip_turn = False
         
     def print(self):
         print("Player " + str(self.player_num) + ":")
-        print("\tColor: " + self.color)
+        print("\tBoard index: " + str(self.board_idx))
         print("\tSkip Turn: " + str(self.skip_turn))
 
     def getAndClearSkipTurn(self):
