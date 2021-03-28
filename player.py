@@ -28,3 +28,6 @@ class Player:
 
     def move(self, new_board_idx):
         self.board_idx = new_board_idx
+
+    def set_skip(self, val):
+        self.skip_turn = val

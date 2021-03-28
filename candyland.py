@@ -2,6 +2,12 @@ from board import Board
 from deck import Deck
 from player import Player
 
+#@todo:
+#- Add logger levels (https://docs.python.org/3/howto/logging.html)
+#- Add statistics class (num_turns, winning_player[])
+#- Add monte carlo num_runs loop
+#- Add statistics plotting
+
 num_players = 4
 
 # Create the board
@@ -16,22 +22,6 @@ for i in range(num_players):
     p.append(Player(i))
 current_player = 0
 
-####  DEBUG PRINTS  ####
-if (False):
-    # Print Spaces (debug)
-    for i in range(b.num_spaces):
-        print("Space: " + str(i))
-        print("\tColor list: " + b.space_colors[i])
-
-        # Print Cards (debug)
-        d.print()
-
-        # Print Players (debug)
-        for i in range(num_players):
-            p[i].print()
-####  END DEBUG PRINTS  ####
-
-
 # Take turns, play game
 # Set up an infinite loop that breaks when a player wins.
 while (True):
@@ -39,7 +29,10 @@ while (True):
 
     # Check to see if this player's turn is getting skipped
     if (p[current_player].skip_turn):
-        p[current_player].skip_turn == False
+        print("** Turn skipped!")
+        p[current_player].set_skip(False)
+        # Next players turn
+        current_player = (current_player + 1) % num_players
         continue
     
     card = d.draw()
