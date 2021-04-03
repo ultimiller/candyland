@@ -4,12 +4,10 @@ class Player:
     def __init__(self, player_num):
         # Store the player number
         self.player_num = player_num
+        self.reset()
 
-        # Current space on board
-        self.board_idx = -1;
-        
-        # Member to know whether player is missing the next
-        # turn
+    def reset(self):
+        self.board_idx = -1
         self.skip_turn = False
         
     def print(self):
