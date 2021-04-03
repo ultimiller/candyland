@@ -50,9 +50,6 @@ class Board:
         # special card. Python will throw a ValueError exception in this case.
         # Put this in a for loop to handle a card with a double color.
         current_space = p.board_idx
-        if (c.special):
-            print("** Special Card!")
-        c.print
             
         for i in range(c.num_squares):
             try:
@@ -81,8 +78,6 @@ class Board:
         
         # Handle shortcuts
         if (self.shortcuts[next_space] > 0):
-            print("** Shortcut! Jumping from " + str(next_space) + " to " +
-                  str(self.shortcuts[next_space]))
             next_space = self.shortcuts[next_space]
 
         p.move(next_space)

@@ -5,7 +5,6 @@ class Deck:
     """Class defining the attributes of a deck"""
 
     def shuffle(self):
-        print("Shuffling...")
         random.shuffle(self.cards)
 
     def draw(self):
